@@ -31,6 +31,8 @@ const App = () => {
     }
   }, [])
 
+  blogs.sort((a, b) => b.likes - a.likes)
+
   const handleLogin = async (event) => {
     event.preventDefault()
     
@@ -68,6 +70,7 @@ const App = () => {
   }
 
   const handleCreate = async (newBlog) => {
+    blogFormRef.current.toggleVisibility()
     await blogService.create(newBlog)
     const updatedBlogs = await blogService.getAll()
     setBlogs(updatedBlogs)
@@ -84,7 +87,6 @@ const App = () => {
       />
     )
   }
-
   return(
     <div>
       <h2>blogs</h2>
@@ -92,11 +94,11 @@ const App = () => {
       <button onClick={handleLogOut}>
         Logout
       </button>
-      <Togglable buttonLabel={'Create a new blog'} ref={blogFormRef}>
+      <Togglable buttonLabel='Create a new blog' ref={blogFormRef}>
         <CreationForm handleCreate={handleCreate} />
       </Togglable>  
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} blogFormRef={blogFormRef} />
+        <Blog key={blog.id} blog={blog} user={user} />
       )}
       
     </div>
