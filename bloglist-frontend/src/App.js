@@ -76,6 +76,19 @@ const App = () => {
     setBlogs(updatedBlogs)
   }
 
+  const handleDelete = async ( id ) => {
+    try{
+      console.log('user.name:', user.username)
+      console.log('blog.id:', id)
+      await blogService.remove(id)
+      blogService.getAll().then(blogs =>
+        setBlogs( blogs )
+      )
+    }catch(e){
+      console.log(e)
+    }  
+  }
+
   if (user === null) {
     return (
       <LoginForm
@@ -98,7 +111,7 @@ const App = () => {
         <CreationForm handleCreate={handleCreate} />
       </Togglable>  
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} user={user} />
+        <Blog key={blog.id} blog={blog} user={user} handleDelete={handleDelete} />
       )}
       
     </div>

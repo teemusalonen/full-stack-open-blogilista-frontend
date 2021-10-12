@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
 
-const Blog = ({ blog, user }) => {
+const Blog = ({ blog, user, handleDelete }) => {
   const [visible, setVisible] = useState(false)
   const [likes, setLikes] = useState(blog.likes)
   
@@ -32,14 +32,12 @@ const Blog = ({ blog, user }) => {
     blog.likes++
   }
 
-  const handleDelete = async () => {
-    console.log('user.name:', user.username)
-    console.log('blog.id:', blog.id)
-    if(user.username === blog.user.username){
-      blogService.remove(blog.id)
-    }else{
-      //notifikaatio, että ei ole oma blogisi!
-    }
+  const seeIfDeleteIsOkayAndDelete = () => {
+    if(window.confirm(`Do you really want to remove ${blog.title}?`)){
+      if(user.username === blog.user.username){
+        handleDelete(blog.id)
+      }
+    }  
   }
 
   return (
@@ -50,7 +48,7 @@ const Blog = ({ blog, user }) => {
           <b>author: </b>{blog.author} <br />
           <b>url: </b>{blog.url} <br />
           <b>likes: </b>{likes} <button onClick={() => handleLike()}>like</button> <br />
-          <button onClick={() => handleDelete()}>remove</button>
+          <button onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
         </div> 
         :
         <div>
