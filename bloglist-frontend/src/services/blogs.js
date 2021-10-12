@@ -22,8 +22,16 @@ const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
+const update = async (id, newBlog) => {
+  const url =  `${baseUrl}/${id}`
+  console.log('id:', id)
+  const response = await axios.put(url, newBlog)
+  return response.data
+}
+
 export default { 
   getAll,
   setToken,
-  create
+  create,
+  update
 }
