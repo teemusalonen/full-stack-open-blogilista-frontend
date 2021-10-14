@@ -42,19 +42,18 @@ const Blog = ({ blog, user, handleDelete }) => {
 
   return (
     <div style={blogStyle}>     
-      {visible ?
-        <div> 
-          <b>title: </b> {blog.title} <button onClick={toggleVisibility}>hide</button> <br /> 
-          <b>author: </b>{blog.author} <br />
-          <b>url: </b>{blog.url} <br />
-          <b>likes: </b>{likes} <button onClick={() => handleLike()}>like</button> <br />
-          <button onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
-        </div> 
-        :
-        <div>
-          {blog.title} {blog.author} <button onClick={toggleVisibility}>view</button>
-        </div>
-      }
+      <div className='showAll' style={{ display: visible ? '' : 'none' }}> 
+        <b>title: </b> {blog.title} <button onClick={toggleVisibility}>hide</button> <br /> 
+        <b>author: </b>{blog.author} <br />
+        <b>url: </b>{blog.url} <br />
+        <b>likes: </b>{likes} <button onClick={() => handleLike()}>like</button> <br />
+        <button onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
+      </div> 
+      :
+      <div className='showLess'>
+        {blog.title} {blog.author} <button onClick={toggleVisibility}>view</button>
+      </div>
+    
     </div>
 )}
 
