@@ -44,11 +44,11 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
         {blog.url} <br />
         <b>likes: </b>
         {likes}{" "}
-        <button className="likeButton" onClick={() => handleLikeAndSetBlogs()}>
+        <button id='like-button' className="likeButton" onClick={() => handleLikeAndSetBlogs()}>
           like
         </button>{" "}
         <br />
-        <button onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
+        <button id='remove-button' onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
       </div>
       {visible ? null : (
         <div className="showLess">
