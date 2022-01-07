@@ -34,7 +34,7 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
   };
 
   return (
-    <div style={blogStyle}>
+    <div className='blog' style={blogStyle}>
       <div className="showAll" style={{ display: visible ? "" : "none" }}>
         <b>title: </b> {blog.title}{" "}
         <button onClick={toggleVisibility}>hide</button> <br />

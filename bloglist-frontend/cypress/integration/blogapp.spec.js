@@ -1,3 +1,5 @@
+/* eslint-disable jest/valid-expect */
+/* eslint-disable jest/valid-expect-in-promise */
 /* eslint-disable no-undef */
 
 describe("Blog app", function () {
@@ -67,7 +69,7 @@ describe("Blog app", function () {
     })
 
     it('A blog can liked', function() {
-      //Create new blog
+      //Create a new blog
       cy.contains('Create a new blog').click()
       cy.get('#title').type('title=)')
       cy.get('#author').type('author=)')
@@ -86,7 +88,7 @@ describe("Blog app", function () {
     })
 
     it('A blog can removed', function() {
-      //Create new blog
+      //Create a new blog
       cy.contains('Create a new blog').click()
       cy.get('#title').type('title=)')
       cy.get('#author').type('author=)')
@@ -103,6 +105,25 @@ describe("Blog app", function () {
 
     })
     
-  })
 
+    it('Most liked blog is shown to on top of the page', function() {
+      // Create 3 new blogs using a command that uses post request 
+      for(let i = 1; i < 4 ; i++){
+        cy.createNewBlog({
+          title: `title ${i}`,
+          author: 'author',
+          url: 'url',
+          likes: i
+        })
+      }
+
+      cy.get('.blog').then( blogs => {
+
+        for(let j = 0; j < blogs.length; j++){
+          expect(blogs[j].innerText).to.equal(`title ${3-j} author view`)
+        }
+      })  
+
+    })
+  })  
 })
