@@ -106,7 +106,7 @@ describe("Blog app", function () {
     })
     
 
-    it('Most liked blog is shown to on top of the page', function() {
+    it('Most liked blog is shown on the top of the page', function() {
       // Create 3 new blogs using a command that uses post request 
       for(let i = 1; i < 4 ; i++){
         cy.createNewBlog({
