@@ -12,10 +12,10 @@ const CreationForm = ({ handleCreate }) => {
 
   const addBlog = async (event) => {
     event.preventDefault()
-    const newBlog = { 
-      title: title, 
-      author: author, 
-      url: url 
+    const newBlog = {
+      title: title,
+      author: author,
+      url: url
     }
     handleCreate(newBlog)
     setTitle('')
@@ -64,7 +64,7 @@ const CreationForm = ({ handleCreate }) => {
 }
 
 CreationForm.propTypes = {
-    handleCreate: PropTypes.func.isRequired
+  handleCreate: PropTypes.func.isRequired
 }
 
 export default CreationForm

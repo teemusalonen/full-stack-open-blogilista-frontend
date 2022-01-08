@@ -2,9 +2,9 @@
 /* eslint-disable jest/valid-expect-in-promise */
 /* eslint-disable no-undef */
 
-describe("Blog app", function () {
+describe('Blog app', function () {
   beforeEach(function () {
-    cy.request("POST", "http://localhost:3003/api/testing/reset")
+    cy.request('POST', 'http://localhost:3003/api/testing/reset')
     const userMoi = {
       name: 'moi',
       username: 'moi',
@@ -18,12 +18,12 @@ describe("Blog app", function () {
 
     cy.request('POST', 'http://localhost:3003/api/users/', userMoi)
     cy.request('POST', 'http://localhost:3003/api/users/', userKoira)
-    cy.visit("http://localhost:3000")
+    cy.visit('http://localhost:3000')
   })
 
-  it("Login form is shown", function () {
-    cy.contains("Log in to the application")
-    cy.contains("login")
+  it('Login form is shown', function () {
+    cy.contains('Log in to the application')
+    cy.contains('login')
   })
 
   describe('Login',function() {
@@ -41,9 +41,9 @@ describe("Blog app", function () {
       cy.get('#password').type(':D')
       cy.get('#login-button').click()
 
-      cy.contains("Log in to the application")
-      cy.contains("login")
-      
+      cy.contains('Log in to the application')
+      cy.contains('login')
+
     })
   })
 
@@ -79,7 +79,7 @@ describe("Blog app", function () {
       cy.contains('title=)')
       cy.contains('author=)')
       cy.contains('url=)')
-      
+
       // Test if likes go up
       cy.contains('likes: 0')
       cy.get('#like-button').click()
@@ -104,10 +104,10 @@ describe("Blog app", function () {
       cy.contains('title=)').should('not.exist')
 
     })
-    
+
 
     it('Most liked blog is shown on the top of the page', function() {
-      // Create 3 new blogs using a command that uses post request 
+      // Create 3 new blogs using a command that uses post request
       for(let i = 1; i < 4 ; i++){
         cy.createNewBlog({
           title: `title ${i}`,
@@ -122,8 +122,8 @@ describe("Blog app", function () {
         for(let j = 0; j < blogs.length; j++){
           expect(blogs[j].innerText).to.equal(`title ${3-j} author view`)
         }
-      })  
+      })
 
     })
-  })  
+  })
 })
