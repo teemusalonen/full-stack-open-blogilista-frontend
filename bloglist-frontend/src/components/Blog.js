@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import blogService from "../services/blogs";
+import React, { useState } from 'react';
+import blogService from '../services/blogs';
 
 const Blog = ({ blog, user, handleDelete, handleLike }) => {
   const [visible, setVisible] = useState(false);
@@ -8,7 +8,7 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: "solid",
+    border: 'solid',
     borderWidth: 1,
     marginBottom: 5,
   };
@@ -22,7 +22,7 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
       try {
         handleDelete(blog.id);
       } catch (error) {
-        console.log("Wrong user");
+        console.log('Wrong user');
       }
     }
   };
@@ -35,7 +35,7 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
 
   return (
     <div className='blog' style={blogStyle}>
-      <div className="showAll" style={{ display: visible ? "" : "none" }}>
+      <div className='showAll' style={{ display: visible ? '' : 'none' }}>
         <b>title: </b> {blog.title}{" "}
         <button onClick={toggleVisibility}>hide</button> <br />
         <b>author: </b>
@@ -43,18 +43,18 @@ const Blog = ({ blog, user, handleDelete, handleLike }) => {
         <b>url: </b>
         {blog.url} <br />
         <b>likes: </b>
-        {likes}{" "}
-        <button id='like-button' className="likeButton" onClick={() => handleLikeAndSetBlogs()}>
+        {likes}{' '}
+        <button id='like-button' className='likeButton' onClick={() => handleLikeAndSetBlogs()}>
           like
-        </button>{" "}
+        </button>{' '}
         <br />
         <button id='remove-button' onClick={() => seeIfDeleteIsOkayAndDelete()}>remove</button>
       </div>
       {visible ? null : (
-        <div className="showLess">
-          {" "}
-          {blog.title} {blog.author}{" "}
-          <button onClick={toggleVisibility}>view</button>{" "}
+        <div className='showLess'>
+          {' '}
+          {blog.title} {blog.author}{' '}
+          <button onClick={toggleVisibility}>view</button>{' '}
         </div>
       )}
     </div>

@@ -31,9 +31,9 @@ const CreationForm = ({ handleCreate }) => {
           title:
           <input
             id='title'
-            type="text"
+            type='text'
             value={title}
-            name="Title"
+            name='Title'
             onChange={event => handleTitleChange(event)}
           />
         </div>
@@ -41,9 +41,9 @@ const CreationForm = ({ handleCreate }) => {
           author:
           <input
             id='author'
-            type="text"
+            type='text'
             value={author}
-            name="Author"
+            name='Author'
             onChange={event => handleAuthorChange(event)}
           />
         </div>
